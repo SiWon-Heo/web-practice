@@ -1,0 +1,276 @@
+* {
+  /* CSS 개요 */
+  * {
+    /* 1. 선택자 */
+      /* 1) 전체 선택자 */
+      * {
+        color: red;
+      }
+  
+      /* 2) 태그 선택자 */
+      li {
+        color: red;
+      }
+  
+      /* 3) 클래스 선택자 */
+      /* <li class="orange">오렌지</li> */
+      /* <span class="orange">오렌지</li> */
+      .orange {
+        color: red;
+      }
+  
+      /* 4) ID 선택자 */
+      /* <li id="orange" class="orange">오렌지</li> */
+      #orange {
+        color: red;
+      }
+  
+      /* 5) 일치 선택자 */
+      /* <span class="orange">오렌지</span> */
+      span.orange {
+        color: red;
+      }
+  
+      /* 6) 자식 선택자 */
+      /* <ul> */
+      /* <li class="orange">오렌지</li> */
+      /* </ul> */
+      ul > .orange {
+        color: red;
+      }
+  
+      /* 7) 하위(후손) 선택자 */
+      /* <div>
+          <li class="orange">오렌지</li>
+          <span class="orange">오렌지</span>
+        </div> */
+  
+      div .orange {
+        color: red;
+      }
+  
+      /* 8) 인접 형제 선택자 */
+      /* 다음 형제 요소 "하나"를 선택, 예시의 경우 망고만 선택 */
+      /* <li class="orange">오렌지</li> */
+      /* <li>망고</li> */
+      .orange + li {
+        color: red;
+      }
+  
+      /* 9) 일반 형제 선택자 */
+      /* 다음 형제 요소 "모두"를 선택, 예시의 경우 망고와 사과 선택 */
+      /* <li class="orange">오렌지</li> */
+      /* <li>망고</li> */
+      /* <li>사과</li> */
+      .orange ~ li {
+        color: red;
+      }
+  }
+  
+  * {
+    /* 2-1. 가상 클래스 */
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+      /* 행동 시 변환이 부드러워짐 */
+      transition:1s;
+    }
+    /* 가상 클래스는 행동을 했을 때 달라짐 */
+    /* 1) 마우스 올릴 때  */
+    .box:hover {
+      width: 300px;
+      background-color: royalblue;
+    }
+    /* 2) 클릭하고 있을 때 */
+    .box:active {
+      width: 300px;
+      background-color: royalblue;
+    }
+    /* 3) 포커스 될 때 */
+    input{
+  
+    }
+    .input:focus {
+      background-color: orange;
+    }
+  
+    /* ****** 포커스가 되지 않는 요소에 포커스를 추가하는 방법 ****** */
+    /* -1이 아닌 값은 권장하지 않음 */ 
+    <div class="box" tabindex="-1"></div>
+    .box:focus {
+      background-color: orange;
+    }
+  }
+  
+  * {
+    /* 2-2. 가상 클래스 선택자 */
+    /* 1) ABC:first-child */
+    /* ABC가 형제 요소 중 첫째일 때만 선택 */
+    <div class="fruits">
+    <span>딸기</span>
+    <span>수박</span>
+  
+    /* 딸기만 선택 */
+    </div>
+    .fruits span:first-child {
+    color: red;
+    }
+  
+    /* 무효과 */
+    </div>
+    .fruits div:first-child {
+    color: red;
+    }
+  
+    /* 2) ABC:last-child */
+    /* 막내일때만 선택 */
+  
+    /* 3) ABC:nth-child(n) */
+    /* n번째 일때만 선택, n은 0부터 */
+    .fruits *:nth-child(2){
+    color: red;
+    }
+    /* -> fruits 후손 중 2+1번째 형제요소 고르기 */
+  
+    /* 짝수번째 고르기 */
+    .fruits *:nth-child(2n){
+    color: red;
+    }
+    /* 4) ABC:not(XYZ) */
+    .fruits *:not(span) {
+    color: red;
+    }
+  }
+  
+  * {
+    /* 3. 가상 요소 선택자 */
+    /* 1) ABC::before(after) */
+    /* 선택자 요소 내부 앞에 내용을 삽입 */
+    <div class="box">
+  
+      Content!
+    </div>
+  
+    .box::before(after) {
+      content: "앞!"("뒤!");
+    }
+  
+  }
+  
+  *{
+    /* 5. 속성 선택자 */
+    /* 1) [ABC="XYZ"] */
+    <input type="text" value="HEROPY">
+    <input type="password" value="1234">
+    <input type="text" value="ABCD" disabled>
+  
+    [type="password"] {
+      color: red;
+    }
+  }
+  
+  *{
+    /* 6. 스타일 상속 */
+    /* 자식 요소들은 스타일을 상속받게 됨 */
+    /* 상속되는 속성은 모두 글자/문자 관련 */
+  
+    /* 1) 강제 상속 */
+    /* 상속이 자동으로 안되는 애들도 상속시킴 */
+    null {
+      /* 오류해제 */
+      width: 1px제
+    }
+  
+    .parent {
+      width: 300px;
+      height: 200px;
+      background-color: orange;
+    }
+  
+    .child {
+      width: 100px;
+      height: inherit;
+      background-color: inherit;
+      position: fixed;
+      top: 100px;
+      right: 10px;
+    }
+  }
+  
+  *{
+    /* 7. 선택자 우선순위 */
+    /* !important >>>> 인라인 선언 >> ID 선택자(100) >> 클래스 선택자(10) >> 태그 선택자(1) >> 전체 선택자(0) */
+    ex) .list li.item -> 클래스 + 태그 + 클래스 = 21점
+    ex) .list li:hover -> 클래스 + 태그 + 가상클래스 = 21점
+    ex) .box::before -> 클래스 + 가상요소(태그) = 11점
+    ex) #submit span -> ID + 태그 = 101점
+    ex) header .munu li:nth-child(2) -> 태그 + 클래스 + 태그 + 가상클래스 = 22점
+    ex) h1 -> 태그 = 1점
+    ex) :not(.box) -> 가상클래스(not이라 0점) + 클래스(box) = 10점
+  
+    ex)
+      #hello {
+        color: blue;
+      }
+      .hello {
+        color: red;
+      }
+      => red로 지정
+  
+      점수가 같으면 나중에 해석되는 코드가 우선됨
+  }
+}
+
+
+* {
+  /* CSS 몰랐던 팁 */
+  <span> 태그는 인라인 태그라 width height 적용 불가능
+  em은 글꼴 크기를 나타냄
+  vw, vh는 뷰포트 가로세로 백분율
+  margin/padding은 음수 사용 가능, "가로" 비율로 설정
+  margin/padding/border 속성 순서는 동일
+  margin: 상 우 하 좌;
+  margin: 상 좌우 하;
+  margin: 상하 좌우;
+  margin: 상하좌우;
+  border 들어가면 요소의 크기가 늘어남!
+  border-radius: 사포질
+  box-sizing: border-box; => border만큼 박스 사이즈 줄여줌
+  overflow는 넘친 내용 처리
+  overflow: scroll -> 근데 넘치지 않은 스크롤바도 생김
+  overflow: auto -> 넘친 영역만 스크롤
+  overflow: visible -> 넘친거 보임
+  overflow: hidden -> 넘친거 자름
+  display: block -> span 태그 가로세로 조정 가능
+  display: none -> 가림
+  font-weight -> 100~900, 400과 700 주로 사용
+  line-height(문장 간격) -> font-size 기준, 배수로 사용 권장
+  문자 -> display: block으로 바꿔서 제어
+  background-repeat: repeat-x(y)
+  position: absolute -> 부모 요소의 기준으로 배치
+  position: relative -> 위치상의 부모(스크린 상 부모) 기준으로 배치
+  position: fixed -> 뷰포트 기준
+  position: static -> 위치가 없는 것으로 판정
+  position 부모를 못찾으면 viewport로 판정
+  쌓임 순서 : 포지션 속성 값이 있음(static 아님) > z-order가 높음 > 나중에 선언됨
+  * position이 absolute 또는 fixed가 선언된 경우 display:block이 자동으로 들어감
+
+  플렉스 컨테이너, 플렉스 아이템
+  부모요소 display: flex (플렉스 컨테이너), 자식 요소는 플렉스 아이템
+  inline-flex: 수평으로 플렉스 컨테이너가 쌓임
+  justify-content: 수평 정렬 (flex-start, flex-end, center), 대부분의 경우
+  align-content: 수직 정렬 (flex-start, flex-end, center)
+  flex-wrap: wrap -> 줄바꿈
+  align-items: 한 줄에 대한 정렬
+  order: n -> 각 아이템에 부여, 순서 만들 수 있음. 단순 숫자 비교(e.g. -1 < 0)
+  flex-grow(shrink): n -> 아이템 플렉스 설정, 증가 비율 설정 가능
+
+  transition: 속성명 지속시간 타이밍함수 대기시간
+  transition-property: all/속성명
+  transition-timing-function: ease/linear/ease-in/ease-out/ease-in-out
+
+  transform: 변환함수1 함수2 함수3 ... ;
+  transform: 원근법 이동 크기 기울임 ... ;
+  
+}
